@@ -1,0 +1,41 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <lightning-card title= "Financial Services Account Listing">
+        <div class= "slds-var-m-around_medium">
+            <lightning-layout>
+                <lightning-layout-item size="4" padding="around-small">
+                    <lightning-input
+                    type="search"
+                    onchange={searchHandler}
+                    label="Search Account"
+                    value={searchKey}
+                    ></lightning-input>
+                </lightning-layout-item>
+                <!---Sorting dropdown-->
+                <lightning-layout-item size="2" alignment-bump="left" padding="around-small">
+                    <lightning-combobox 
+                    name="sortedBy" 
+                    value={sortedBy} 
+                    label="Sort By"
+                    options={sortByOptions} 
+                    onchange={sortHandler}
+                    ></lightning-combobox>
+                </lightning-layout-item>
+            </lightning-layout>
+
+<!-- sldsValidatorIgnoreNextLine -->
+            <template if:true={accounts}>
+                <lightning-datatable
+                key-field="Id"
+                data={accounts}
+                columns={columns}
+                draft-values={draftValues}
+                onsave={handleSave}
+                onrowaction={handleRowAction}
+                hide-checkbox-column>
+                </lightning-datatable>
+            </template>       
+        </div>
+    </lightning-card>
+</template>
+
